@@ -226,4 +226,15 @@ temp.next=null;
        
     }
 }
+public boolean floydsAlgo(){
+    Node<T> fastPtr=this.head;
+    Node<T> slowPtr=this.head;
+    while(fastPtr!=null && slowPtr!=null && fastPtr.next!=null){
+slowPtr=slowPtr.next;
+fastPtr=fastPtr.next.next;
+if(slowPtr.data.equals(fastPtr.data))
+return true;
+    }
+    return false;
+}
 }
