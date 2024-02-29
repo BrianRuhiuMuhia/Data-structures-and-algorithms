@@ -3,13 +3,16 @@ public static void main(String[]  args){
 SingleLinkedList<Integer> list=new SingleLinkedList<Integer>();
 list.insertNode(10);
 list.insertNode(20);
+list.insertNode(20);
 list.insertNode(30);
-list.insertHead(50);
-list.insertAtEnd(100);
-list.insertAtPosition(3, 1000);
+list.insertNode(40);
+list.insertNode(40);
+list.insertNode(40);
+list.insertNode(50);
+list.insertNode(60);
 list.printNodes();
-System.out.println(list.searchAtPos(3));
-
+list.removeDuplicates();
+list.printNodes();
 }    
 }
 class Node<T>{
@@ -60,6 +63,7 @@ public void printNodes()
         System.out.print(curr.data + "->");
         curr=curr.next;
     }
+    System.out.print("null");
     System.out.println("");
 }
 public void insertAtEnd(T data)
@@ -204,5 +208,22 @@ return exists;
 forwardPtr=forwardPtr.next;
 }
 return exists;
+}
+public void removeDuplicates()
+{
+    Node<T> curr=this.head;
+    while(curr!=null)
+    {
+        Node<T> temp=curr.next;
+        if(temp!=null && curr.data.equals(temp.data))
+        {
+curr.next=temp.next;
+temp.next=null;
+        }
+        else{
+            curr=curr.next; 
+        }
+       
+    }
 }
 }
