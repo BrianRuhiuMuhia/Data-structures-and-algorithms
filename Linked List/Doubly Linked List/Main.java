@@ -8,7 +8,7 @@ list.prepend(30);
 list.append(100);
 list.append(300);
 list.printForward();
-list.deleteNode(10);
+list.deleteHead();
 list.printForward();
 }    
 }
@@ -28,11 +28,22 @@ class DoublyLinkedList{
     Node head;
     Node tail;
     int size=0;
+    public Node deleteHead()
+    {
+        Node deletedNode=this.head;
+        this.head=deletedNode.next;
+        deletedNode.next.prev=this.head;
+        return deletedNode;
+    }
     public Node deleteNode(int data)
     {
 Node curr=this.head;
 while(curr!=null)
 {
+    if(this.head.data==data)
+    {
+        return deleteHead();
+    }
 if(curr.next.data==data){
 break;
 }
@@ -42,6 +53,25 @@ curr=curr.next;
     curr.next=deletedNode.next;
     deletedNode.next.prev=curr;
     return deletedNode;
+    }
+    public Node deleteAtPos(int pos)
+    {
+        Node deletedNode=null;
+        int count=0;
+        Node curr=this.head;
+        while(count<pos-1)
+        {
+            if(pos==0)
+            {
+                return deleteHead();
+            }
+            count+=1;
+            curr=curr.next;
+        }
+        deletedNode=curr.next;
+        curr.next=deletedNode.next;
+        deletedNode.next.prev=curr;
+        return deletedNode;
     }
     public Node insertANodeAtPos(int data,int pos)
     {
