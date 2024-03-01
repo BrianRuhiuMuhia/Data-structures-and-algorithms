@@ -11,7 +11,7 @@ list.insertNode(40);
 list.insertNode(50);
 list.insertNode(60);
 list.printNodes();
-list.removeDuplicates();
+list.deleteNode(5000);
 list.printNodes();
 }    
 }
@@ -56,6 +56,7 @@ public void insertHead(T data)
     }
     this.size++;
 }
+
 public void printNodes()
 {
     Node<T> curr=this.head;
@@ -236,5 +237,27 @@ if(slowPtr.data.equals(fastPtr.data))
 return true;
     }
     return false;
+}
+public Node<T> deleteNode(T data)
+{
+Node<T> curr=this.head;
+Node<T> deletedNode=null;
+while(curr!=null){
+    if(curr.next==null)
+    {
+        return deletedNode;
+    }
+if(curr.next.data.equals(data))
+{
+break;
+}
+
+curr=curr.next;
+}
+deletedNode=curr.next;
+Node<T> temp=deletedNode.next;
+curr.next=temp;
+deletedNode.next=null;
+return deletedNode;
 }
 }
