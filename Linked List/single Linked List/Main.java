@@ -11,7 +11,7 @@ list.insertNode(40);
 list.insertNode(50);
 list.insertNode(60);
 list.printNodes();
-list.deleteNode(5000);
+list.deleteNode(60);;
 list.printNodes();
 }    
 }
@@ -242,6 +242,10 @@ public Node<T> deleteNode(T data)
 {
 Node<T> curr=this.head;
 Node<T> deletedNode=null;
+if(curr.data.equals(this.head.data))
+{
+    this.deleteHead();
+}
 while(curr!=null){
     if(curr.next==null)
     {
@@ -259,5 +263,23 @@ Node<T> temp=deletedNode.next;
 curr.next=temp;
 deletedNode.next=null;
 return deletedNode;
+}
+public void deleteAtIndex(int pos)
+{
+    if(pos==1)
+    {
+        this.deleteHead();
+    }
+    Node<T> curr=this.head;
+    Node<T> deletedNode=null;
+    int count=1;
+    while(count<pos-1){
+        curr=curr.next;
+        count+=1;
+    }
+    deletedNode=curr.next;
+Node<T> temp=deletedNode.next;
+curr.next=temp;
+deletedNode.next=null;
 }
 }
