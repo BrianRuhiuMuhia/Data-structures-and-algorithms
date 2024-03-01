@@ -8,7 +8,7 @@ list.prepend(30);
 list.append(100);
 list.append(300);
 list.printForward();
-list.deleteHead();
+list.deleteTail();
 list.printForward();
 }    
 }
@@ -33,6 +33,12 @@ class DoublyLinkedList{
         Node deletedNode=this.head;
         this.head=deletedNode.next;
         deletedNode.next.prev=this.head;
+        return deletedNode;
+    }
+    public Node deleteTail(){
+        Node deletedNode=this.tail;
+        this.tail=deletedNode.prev;
+        this.tail.next=null;
         return deletedNode;
     }
     public Node deleteNode(int data)
@@ -141,5 +147,18 @@ curr=curr.prev;
     }
 System.out.print("null");
 System.out.println("");
+   }
+   public boolean hasCycle()
+   {
+    Node fastPtr=this.head;
+    Node slowPtr=this.head;
+    while(fastPtr!=null && slowPtr!=null && fastPtr.next!=null)
+    {
+        slowPtr=slowPtr.next;
+        fastPtr=fastPtr.next.next;
+        if(slowPtr.data==fastPtr.data)
+        return true;
+    }
+    return false;
    }
 }
