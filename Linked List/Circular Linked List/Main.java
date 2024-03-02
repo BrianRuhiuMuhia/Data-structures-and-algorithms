@@ -184,11 +184,12 @@ public class Main {
             }
         }
         slowPtr=this.head;
-        while(slowPtr!=fastPtr)
-        {
-            slowPtr=slowPtr.next;
-            fastPtr=fastPtr.next;
-        }
+        fastPtr=this.head;
+        // while(slowPtr!=fastPtr)
+        // {
+        //     slowPtr=slowPtr.next;
+        //     fastPtr=fastPtr.next;
+        // }
         while(fastPtr.next!=slowPtr)
         {
             fastPtr=fastPtr.next;
