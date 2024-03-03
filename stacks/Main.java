@@ -1,5 +1,5 @@
+package stacks;
 import java.util.ArrayList;
-
 class Main{
     public static void main(String[] args)
     {
@@ -7,7 +7,9 @@ Stack stack=new Stack();
 stack.push(1);
 stack.push(2);
 stack.push(3);
-
+System.out.println(stack.list+" "+" "+stack.peek());
+stack.pop();
+System.out.println(stack.list+" "+" "+stack.peek());
     }
 }
 class Stack{
@@ -17,15 +19,15 @@ class Stack{
     }
     public int push(int data)
     {
-     this.list.add(0,data);
+     this.list.add(this.list.size(),data);
      return data;
     }
     public int pop(){
-        int deleted=list.remove(0);
+        int deleted=list.remove(list.size()-1);
         return deleted;
     }
     public int peek(){
-        return list.get(0);
+        return list.get(list.size()-1);
     }
     public int size(){
         return list.size();
