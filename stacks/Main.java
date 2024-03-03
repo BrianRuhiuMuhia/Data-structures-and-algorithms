@@ -7,9 +7,7 @@ Stack stack=new Stack();
 stack.push(1);
 stack.push(2);
 stack.push(3);
-System.out.println(stack.list+" "+" "+stack.peek());
-stack.pop();
-System.out.println(stack.list+" "+" "+stack.peek());
+
     }
 }
 class Stack{
