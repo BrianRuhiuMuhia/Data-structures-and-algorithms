@@ -11,7 +11,7 @@ list.insertNode(40);
 list.insertNode(50);
 list.insertNode(60);
 list.printNodes();
-list.deleteNode(60);;
+list.rotateLinkedList(5);;
 list.printNodes();
 }    
 }
@@ -281,5 +281,57 @@ public void deleteAtIndex(int pos)
 Node<T> temp=deletedNode.next;
 curr.next=temp;
 deletedNode.next=null;
+}
+public void deleteMiddleNode()
+{
+    Node<T> fastPtr=this.head;
+    Node<T> slowPtr=this.head;
+    while(fastPtr.next!=null && slowPtr.next!=null)
+    {
+        fastPtr=fastPtr.next.next;
+        slowPtr=slowPtr.next;
+    }
+Node<T> temp=slowPtr;
+Node<T> deletedNode=slowPtr;
+deletedNode.data=temp.next.data;
+deletedNode.next=temp.next.next;
+temp=null;
+}
+public void deleteMiddleNode2()
+{
+    int count=0;
+    Node<T> curr=this.head;
+    while(curr!=null)
+    {
+curr=curr.next;
+count++;
+    }
+    double middle=Math.floor(count/2);
+    curr=this.head;
+    for(int i=0;i<middle-1;i++)
+    {
+curr=curr.next;
+    }
+    Node<T> deletedNode=curr.next;
+    curr.next=deletedNode.next;
+    deletedNode=null;
+}
+public void rotateLinkedList(int count)
+{
+Node<T> curr=this.head;
+for(int i=0;i<count-1;i++)
+{
+    curr=curr.next;
+}
+Node<T> newHead=curr.next;
+curr.next=null;
+curr=newHead;
+while(curr.next!=null)
+{
+curr=curr.next;
+}
+Node<T> lastNode=curr;
+lastNode.next=this.head;
+this.head=newHead;
 }
 }

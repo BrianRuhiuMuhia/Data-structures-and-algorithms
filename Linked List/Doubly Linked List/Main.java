@@ -8,7 +8,7 @@ list.prepend(30);
 list.append(100);
 list.append(300);
 list.printForward();
-list.deleteTail();
+list.reverse();
 list.printForward();
 }    
 }
@@ -161,4 +161,44 @@ System.out.println("");
     }
     return false;
    }
+   public void removeCycle(){
+    if(hasCycle()==false)
+    {
+        System.out.println("Has a Cycle");
+    }
+    else{
+        Node fastPtr=this.head;
+        Node slowPtr=this.head;
+        while(fastPtr!=null && slowPtr!=null && fastPtr.next!=null)
+        {
+            if(fastPtr==slowPtr)
+            {
+                break;
+            }
+        }
+        slowPtr=head;
+        fastPtr=head;
+        while(fastPtr.next!=slowPtr)
+        {
+            fastPtr=fastPtr.next;
+        }
+        fastPtr.next=null;
+    }
+   }
+   public void reverse()
+   {
+    Node curr=this.head;
+    Node prev=null;
+    while(curr!=null)
+    {
+        Node temp=curr.next;
+        curr.prev=temp;
+        curr.next=prev;
+        prev=curr;
+        curr=temp;
+    }
+    this.head=prev;
+   }
+
+
 }
