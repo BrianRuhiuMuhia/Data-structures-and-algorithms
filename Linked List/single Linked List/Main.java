@@ -11,7 +11,8 @@ list.insertNode(40);
 list.insertNode(50);
 list.insertNode(60);
 list.printNodes();
-list.rotateLinkedList(5);;
+list.convertToCircularLinkedList();
+list.deleteCycle();
 list.printNodes();
 }    
 }
@@ -333,5 +334,91 @@ curr=curr.next;
 Node<T> lastNode=curr;
 lastNode.next=this.head;
 this.head=newHead;
+}
+public void deleteAndMaintain(int m,int n)
+{
+Node<T> curr=this.head;
+int num=0;
+while(curr!=null)
+{
+if(num==n)
+{
+    int i=0;
+while(i<n && curr.next!=null)
+{
+Node<T> deletedNode=curr.next;
+curr.next=deletedNode.next;
+deletedNode=null;
+i++;
+}
+num=0;
+}
+else{
+    num++;
+    curr=curr.next;
+}
+}
+}
+public void deleteKthNode(int k)
+{
+    if(k==1 || k==0)
+    {
+        this.head=null;
+    }
+    else{
+        int count=0;
+        Node <T> curr=this.head;
+        while(curr!=null)
+        {
+            if(count==(k-1) && curr.next!=null)
+            {
+        Node<T> deletedNode=curr.next;
+        curr.next=deletedNode.next;
+        deletedNode=null;
+        count=0;
+            }
+            curr=curr.next;
+            count++;
+        }
+    }
+
+}
+public void pairwiseSwap(){
+    Node<T> curr=this.head;
+    while(curr.next!=null && curr!=null)
+    {
+        swap(curr,curr.next);
+        curr=curr.next.next;
+    }
+}
+public void swap(Node<T> node_one,Node<T> node_two)
+{
+T temp=node_one.data;
+T temp_one=node_two.data;
+node_one.data=temp_one;
+node_two.data=temp;
+}
+public void convertToCircularLinkedList()
+{
+    Node <T> curr=this.head;
+    while(curr.next!=null)
+    {
+        curr=curr.next;
+    }
+    Node<T> tail=curr;
+    tail.next=this.head;
+}
+public void deleteCycle()
+{
+    if(floydsAlgo())
+    {
+        Node<T> slowPtr=this.head;
+        Node<T> fastPtr=this.head;
+        while(fastPtr.next!=slowPtr && fastPtr!=null)
+        {
+            fastPtr=fastPtr.next;
+        }
+        fastPtr.next=null;
+    }
 }
 }
