@@ -172,17 +172,8 @@ public class Main {
             System.out.println("no cycle");
         }
         else{
-            Node fastPtr=this.head;
+        Node fastPtr=this.head;
         Node slowPtr=this.head;
-        while(fastPtr!=null && slowPtr!=null && fastPtr.next!=null)
-        {
-            slowPtr=slowPtr.next;
-            fastPtr=fastPtr.next.next;
-            if(slowPtr==fastPtr)
-            {
-                break;
-            }
-        }
         slowPtr=this.head;
         fastPtr=this.head;
         while(fastPtr.next!=slowPtr)

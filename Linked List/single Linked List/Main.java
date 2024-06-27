@@ -1,18 +1,16 @@
 public class Main {
 public static void main(String[]  args){
 SingleLinkedList<Integer> list=new SingleLinkedList<Integer>();
-list.insertNode(10);
-list.insertNode(20);
-list.insertNode(20);
-list.insertNode(30);
-list.insertNode(40);
-list.insertNode(40);
-list.insertNode(40);
-list.insertNode(50);
-list.insertNode(60);
-list.printNodes();
-list.convertToCircularLinkedList();
-list.deleteCycle();
+list.insertRecusively(50);
+list.insertRecusively(40);
+list.insertRecusively(60);
+list.insertRecusively(10);
+list.insertRecusively(40);
+list.insertRecusively(20);
+list.insertRecusively(30);
+list.insertRecusively(40);
+list.insertRecusively(20);
+
 list.printNodes();
 }    
 }
@@ -47,6 +45,7 @@ public void insertHead(T data)
     Node <T> node =new Node<T>(data);
     if(this.head==null)
     {
+    node.next=this.head;
     this.head=node;
     }
     else if(this.head!=null)
@@ -56,6 +55,22 @@ public void insertHead(T data)
         this.head=node;
     }
     this.size++;
+}
+public void insertRecusively(T data)
+{
+Node<T> newNode=new Node<T>(data);
+this.insertR(this.head, newNode);
+}
+public void insertR(Node<T> head,Node<T> node)
+{
+if(head==null)
+{
+    head=node;
+    return;
+}
+else{
+insertR(head.next, node);
+}
 }
 
 public void printNodes()
@@ -421,4 +436,27 @@ public void deleteCycle()
         fastPtr.next=null;
     }
 }
+public void swapKthPos(int k)
+{
+Node<T> firstPtr=this.head;
+Node<T> secondPtr=this.head;
+int count=0;
+while(count<k)
+{
+    firstPtr=firstPtr.next;
+    count++;
+}
+Node<T> swapFirst=firstPtr;
+while(firstPtr!=null)
+{
+secondPtr=secondPtr.next;
+firstPtr=firstPtr.next;
+}
+Node<T> swapLast=secondPtr;
+T data=swapFirst.data;;
+swapFirst.data=swapLast.data;
+swapLast.data=data;
+
+}
+
 }
