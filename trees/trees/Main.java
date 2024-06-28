@@ -1,4 +1,5 @@
 package trees;
+import java.util.ArrayList;
 class Main{
     public static void main(String[] args){
 final BST list=new BST();
@@ -9,13 +10,8 @@ list.insert(40);
 list.insert(70);
 list.insert(60);
 list.insert(80);
-list.insert(90);
-list.insert(100);
-list.insert(110);
-list.insert(120);
-list.insert(130);
 System.out.println(list.heightOfTree(list.root));
-list.preOrder(list.root);
+list.levelOrder();
 System.out.println(list.search(list.root, 100));
     }
 }
@@ -73,7 +69,7 @@ this.insertNode(this.root, node);
 public int heightOfTree(Node root)
 {
     if(root==null)
-    return -1;
+    return 0;
 return Math.max(heightOfTree(root.left),heightOfTree(root.right))+1;
 }
 public void preOrder(Node root)
@@ -119,6 +115,23 @@ else{
     }
 }
 
+}
+public void levelOrder()
+{
+ArrayList<Node> queue=new ArrayList<>();
+queue.add(queue.size(),this.root);
+while(queue.size()>0)
+{
+Node popped=queue.remove(0);
+System.out.print(popped.data + " ");
+if(popped.left!=null)
+{
+    queue.add(queue.size(),popped.left);
+}
+if(popped.right!=null){
+    queue.add(queue.size(),popped.right);
+}
+}
 }
     public String toString()
     {
